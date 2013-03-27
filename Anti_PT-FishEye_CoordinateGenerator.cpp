@@ -1,4 +1,4 @@
-// Anti_PT-FishEye_CoordinateGenerator.cpp : ¶¨Òå¿ØÖÆÌ¨Ó¦ÓÃ³ÌÐòµÄÈë¿Úµã¡£
+// Anti_PT-FishEye_CoordinateGenerator.cpp : å®šä¹‰æŽ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£ç‚¹ã€‚
 //
 
 //#include "stdafx.h"
@@ -11,14 +11,14 @@
 
 using namespace std;
 
-double ModelCoo[VERTEX_POINT_NUM];        /* Ä£°å×ø±ê,¼´Ä¿±ê×ø±ê£¬4´ú±í4¸ö¶¥µã£¬3´ú±íÈýÎ¬ */
-double TextCoo[TEXCORDS_POINT_NUM];		  /* ÎÆÀí×ø±ê,¼´Ô­×ø±ê£¬4´ú±í4¸ö¶¥µã£¬2´ú±í¶þÎ¬ */
-double TempCoo[TEXCORDS_POINT_NUM];		  /* ÄæÍ¸ÊÓºóµÄ»º³å×ø±ê£ºÄ£°å×ø±ê->»º³å×ø±ê->ÎÆÀí×ø±ê */
+double ModelCoo[VERTEX_POINT_NUM];        /* æ¨¡æ¿åæ ‡,å³ç›®æ ‡åæ ‡ï¼Œ4ä»£è¡¨4ä¸ªé¡¶ç‚¹ï¼Œ3ä»£è¡¨ä¸‰ç»´ */
+double TextCoo[TEXCORDS_POINT_NUM];		  /* çº¹ç†åæ ‡,å³åŽŸåæ ‡ï¼Œ4ä»£è¡¨4ä¸ªé¡¶ç‚¹ï¼Œ2ä»£è¡¨äºŒç»´ */
+double TempCoo[TEXCORDS_POINT_NUM];		  /* é€†é€è§†åŽçš„ç¼“å†²åæ ‡ï¼šæ¨¡æ¿åæ ‡->ç¼“å†²åæ ‡->çº¹ç†åæ ‡ */
 int main(int argc, char* argv[])
 {
-    long int pos1 = 0;		/* pos1ÊÇÎÆÀí×ø±êÊý×éÏÂ±êµÄÔöÁ¿ */
-	long int pos2 = 0;		/* pos2ÊÇÄ£°å×ø±êÊý×éÏÂ±êµÄÔöÁ¿ */
-	long int pos3 = 0;		/* pos3ÊÇTempCooµÄÏÂ±ê£¬ */
+    long int pos1 = 0;		/* pos1æ˜¯çº¹ç†åæ ‡æ•°ç»„ä¸‹æ ‡çš„å¢žé‡ */
+	long int pos2 = 0;		/* pos2æ˜¯æ¨¡æ¿åæ ‡æ•°ç»„ä¸‹æ ‡çš„å¢žé‡ */
+	long int pos3 = 0;		/* pos3æ˜¯TempCooçš„ä¸‹æ ‡ï¼Œ */
     double i, j;
     double k, r, x0, y0, x1, y1;
     double mesh_y,mesh_x;    
@@ -102,12 +102,12 @@ int main(int argc, char* argv[])
 			temp_v = v;
 			
 			/************************************************************************/
-			/* Ä³²ÉÑùµã£º¼ÆËãTexture×ø±ê                                            */
+			/* æŸé‡‡æ ·ç‚¹ï¼šè®¡ç®—Textureåæ ‡                                            */
 			/************************************************************************/
 			/**
-			**ÄæÍ¸ÊÓËã·¨£º¸ù¾ÝÍ¸ÊÓºóµÄ×ø±êºÍÍ¸ÊÓ¾ØÕó£¬·´ÍÆ³öÍ¸ÊÓÇ°µÄ×ø±ê¡£
-			**ÊäÈë£ºtemp_u£¨ºá×ø±ê£©£¬temp_v£¨×Ý×ø±ê£©
-			**Êä³ö£ºx_anti_PT£¨ºá×ø±ê£©£¬y_anti_PT£¨×Ý×ø±ê£©
+			**é€†é€è§†ç®—æ³•ï¼šæ ¹æ®é€è§†åŽçš„åæ ‡å’Œé€è§†çŸ©é˜µï¼ŒåæŽ¨å‡ºé€è§†å‰çš„åæ ‡ã€‚
+			**è¾“å…¥ï¼štemp_uï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œtemp_vï¼ˆçºµåæ ‡ï¼‰
+			**è¾“å‡ºï¼šx_anti_PTï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œy_anti_PTï¼ˆçºµåæ ‡ï¼‰
 			**/
 			delta1 = m0*m4 - m1*m3 + m3*m7*temp_u - m4*m6*temp_u - m0*m7*temp_v + m1*m6*temp_v;	
 			delta4 = m1*m5 - m2*m4 + m4*temp_u - m1*temp_v - m5*m7*temp_u + m2*m7*temp_v;
@@ -118,9 +118,9 @@ int main(int argc, char* argv[])
 			TempCoo[pos3++] = y_anti_PT;
 
 			/**
-			**ÄæÓãÑÛËã·¨£ºÍÆËã³öÕý³£Í¼Æ¬ÖÐµÄ²ÉÑùµã×ø±êÔÚÓãÑÛÍ¼Æ¬ÖÐµÄ¶ÔÓ¦Ó³Éäµã¡£
-			**ÊäÈë£ºi£¨ºá×ø±ê£©£¬j£¨×Ý×ø±ê£©¡£
-			**Êä³ö£ºx1£¨ºá×ø±ê£©£¬y1£¨×Ý×ø±ê£©¡£
+			**é€†é±¼çœ¼ç®—æ³•ï¼šæŽ¨ç®—å‡ºæ­£å¸¸å›¾ç‰‡ä¸­çš„é‡‡æ ·ç‚¹åæ ‡åœ¨é±¼çœ¼å›¾ç‰‡ä¸­çš„å¯¹åº”æ˜ å°„ç‚¹ã€‚
+			**è¾“å…¥ï¼šiï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œjï¼ˆçºµåæ ‡ï¼‰ã€‚
+			**è¾“å‡ºï¼šx1ï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œy1ï¼ˆçºµåæ ‡ï¼‰ã€‚
 			**/
 			i = x_anti_PT;
 			j = y_anti_PT;
@@ -136,14 +136,14 @@ int main(int argc, char* argv[])
 			ModelCoo[pos2++] = CAMERA1_ZBUFFER;
 
 			/************************************************************************/
-			/* ÏàÁÚ²ÉÑùµã£º¼ÆËãTexture×ø±ê                                          */
+			/* ç›¸é‚»é‡‡æ ·ç‚¹ï¼šè®¡ç®—Textureåæ ‡                                          */
 			/************************************************************************/
 			// temp_u = temp_u;
 			temp_v += mesh_y;
 			/**
-			**ÄæÍ¸ÊÓËã·¨£º¸ù¾ÝÍ¸ÊÓºóµÄ×ø±êºÍÍ¸ÊÓ¾ØÕó£¬·´ÍÆ³öÍ¸ÊÓÇ°µÄ×ø±ê¡£
-			**ÊäÈë£ºtemp_u£¨ºá×ø±ê£©£¬temp_v£¨×Ý×ø±ê£©
-			**Êä³ö£ºx_anti_PT£¨ºá×ø±ê£©£¬y_anti_PT£¨×Ý×ø±ê£©
+			**é€†é€è§†ç®—æ³•ï¼šæ ¹æ®é€è§†åŽçš„åæ ‡å’Œé€è§†çŸ©é˜µï¼ŒåæŽ¨å‡ºé€è§†å‰çš„åæ ‡ã€‚
+			**è¾“å…¥ï¼štemp_uï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œtemp_vï¼ˆçºµåæ ‡ï¼‰
+			**è¾“å‡ºï¼šx_anti_PTï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œy_anti_PTï¼ˆçºµåæ ‡ï¼‰
 			**/
 			delta1 = m0*m4 - m1*m3 + m3*m7*temp_u - m4*m6*temp_u - m0*m7*temp_v + m1*m6*temp_v;	
 			delta4 = m1*m5 - m2*m4 + m4*temp_u - m1*temp_v - m5*m7*temp_u + m2*m7*temp_v;
@@ -154,9 +154,9 @@ int main(int argc, char* argv[])
 			TempCoo[pos3++] = y_anti_PT;
 
 			/**
-			**ÄæÓãÑÛËã·¨£ºÍÆËã³öÕý³£Í¼Æ¬ÖÐµÄ²ÉÑùµã×ø±êÔÚÓãÑÛÍ¼Æ¬ÖÐµÄ¶ÔÓ¦Ó³Éäµã¡£
-			**ÊäÈë£ºi£¨ºá×ø±ê£©£¬j£¨×Ý×ø±ê£©¡£
-			**Êä³ö£ºx1£¨ºá×ø±ê£©£¬y1£¨×Ý×ø±ê£©¡£
+			**é€†é±¼çœ¼ç®—æ³•ï¼šæŽ¨ç®—å‡ºæ­£å¸¸å›¾ç‰‡ä¸­çš„é‡‡æ ·ç‚¹åæ ‡åœ¨é±¼çœ¼å›¾ç‰‡ä¸­çš„å¯¹åº”æ˜ å°„ç‚¹ã€‚
+			**è¾“å…¥ï¼šiï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œjï¼ˆçºµåæ ‡ï¼‰ã€‚
+			**è¾“å‡ºï¼šx1ï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œy1ï¼ˆçºµåæ ‡ï¼‰ã€‚
 			**/
 			i = x_anti_PT;
 			j = y_anti_PT;
@@ -192,12 +192,12 @@ int main(int argc, char* argv[])
 			temp_v = v;
 			
 			/************************************************************************/
-			/* Ä³²ÉÑùµã£º¼ÆËãTexture×ø±ê                                            */
+			/* æŸé‡‡æ ·ç‚¹ï¼šè®¡ç®—Textureåæ ‡                                            */
 			/************************************************************************/
 			/**
-			**ÄæÍ¸ÊÓËã·¨£º¸ù¾ÝÍ¸ÊÓºóµÄ×ø±êºÍÍ¸ÊÓ¾ØÕó£¬·´ÍÆ³öÍ¸ÊÓÇ°µÄ×ø±ê¡£
-			**ÊäÈë£ºtemp_u£¨ºá×ø±ê£©£¬temp_v£¨×Ý×ø±ê£©
-			**Êä³ö£ºx_anti_PT£¨ºá×ø±ê£©£¬y_anti_PT£¨×Ý×ø±ê£©
+			**é€†é€è§†ç®—æ³•ï¼šæ ¹æ®é€è§†åŽçš„åæ ‡å’Œé€è§†çŸ©é˜µï¼ŒåæŽ¨å‡ºé€è§†å‰çš„åæ ‡ã€‚
+			**è¾“å…¥ï¼štemp_uï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œtemp_vï¼ˆçºµåæ ‡ï¼‰
+			**è¾“å‡ºï¼šx_anti_PTï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œy_anti_PTï¼ˆçºµåæ ‡ï¼‰
 			**/
 			delta1 = m0*m4 - m1*m3 + m3*m7*temp_u - m4*m6*temp_u - m0*m7*temp_v + m1*m6*temp_v;	
 			delta4 = m1*m5 - m2*m4 + m4*temp_u - m1*temp_v - m5*m7*temp_u + m2*m7*temp_v;
@@ -208,9 +208,9 @@ int main(int argc, char* argv[])
 			TempCoo[pos3++] = y_anti_PT;
 
 			/**
-			**ÄæÓãÑÛËã·¨£ºÍÆËã³öÕý³£Í¼Æ¬ÖÐµÄ²ÉÑùµã×ø±êÔÚÓãÑÛÍ¼Æ¬ÖÐµÄ¶ÔÓ¦Ó³Éäµã¡£
-			**ÊäÈë£ºi£¨ºá×ø±ê£©£¬j£¨×Ý×ø±ê£©¡£
-			**Êä³ö£ºx1£¨ºá×ø±ê£©£¬y1£¨×Ý×ø±ê£©¡£
+			**é€†é±¼çœ¼ç®—æ³•ï¼šæŽ¨ç®—å‡ºæ­£å¸¸å›¾ç‰‡ä¸­çš„é‡‡æ ·ç‚¹åæ ‡åœ¨é±¼çœ¼å›¾ç‰‡ä¸­çš„å¯¹åº”æ˜ å°„ç‚¹ã€‚
+			**è¾“å…¥ï¼šiï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œjï¼ˆçºµåæ ‡ï¼‰ã€‚
+			**è¾“å‡ºï¼šx1ï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œy1ï¼ˆçºµåæ ‡ï¼‰ã€‚
 			**/
 			i = x_anti_PT;
 			j = y_anti_PT;
@@ -226,14 +226,14 @@ int main(int argc, char* argv[])
 			ModelCoo[pos2++] = CAMERA2_ZBUFFER;
 
 			/************************************************************************/
-			/* ÏàÁÚ²ÉÑùµã£º¼ÆËãTexture×ø±ê                                          */
+			/* ç›¸é‚»é‡‡æ ·ç‚¹ï¼šè®¡ç®—Textureåæ ‡                                          */
 			/************************************************************************/
 			// temp_u = temp_u;
 			temp_v += mesh_y;
 			/**
-			**ÄæÍ¸ÊÓËã·¨£º¸ù¾ÝÍ¸ÊÓºóµÄ×ø±êºÍÍ¸ÊÓ¾ØÕó£¬·´ÍÆ³öÍ¸ÊÓÇ°µÄ×ø±ê¡£
-			**ÊäÈë£ºtemp_u£¨ºá×ø±ê£©£¬temp_v£¨×Ý×ø±ê£©
-			**Êä³ö£ºx_anti_PT£¨ºá×ø±ê£©£¬y_anti_PT£¨×Ý×ø±ê£©
+			**é€†é€è§†ç®—æ³•ï¼šæ ¹æ®é€è§†åŽçš„åæ ‡å’Œé€è§†çŸ©é˜µï¼ŒåæŽ¨å‡ºé€è§†å‰çš„åæ ‡ã€‚
+			**è¾“å…¥ï¼štemp_uï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œtemp_vï¼ˆçºµåæ ‡ï¼‰
+			**è¾“å‡ºï¼šx_anti_PTï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œy_anti_PTï¼ˆçºµåæ ‡ï¼‰
 			**/
 			delta1 = m0*m4 - m1*m3 + m3*m7*temp_u - m4*m6*temp_u - m0*m7*temp_v + m1*m6*temp_v;	
 			delta4 = m1*m5 - m2*m4 + m4*temp_u - m1*temp_v - m5*m7*temp_u + m2*m7*temp_v;
@@ -244,9 +244,9 @@ int main(int argc, char* argv[])
 			TempCoo[pos3++] = y_anti_PT;
 
 			/**
-			**ÄæÓãÑÛËã·¨£ºÍÆËã³öÕý³£Í¼Æ¬ÖÐµÄ²ÉÑùµã×ø±êÔÚÓãÑÛÍ¼Æ¬ÖÐµÄ¶ÔÓ¦Ó³Éäµã¡£
-			**ÊäÈë£ºi£¨ºá×ø±ê£©£¬j£¨×Ý×ø±ê£©¡£
-			**Êä³ö£ºx1£¨ºá×ø±ê£©£¬y1£¨×Ý×ø±ê£©¡£
+			**é€†é±¼çœ¼ç®—æ³•ï¼šæŽ¨ç®—å‡ºæ­£å¸¸å›¾ç‰‡ä¸­çš„é‡‡æ ·ç‚¹åæ ‡åœ¨é±¼çœ¼å›¾ç‰‡ä¸­çš„å¯¹åº”æ˜ å°„ç‚¹ã€‚
+			**è¾“å…¥ï¼šiï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œjï¼ˆçºµåæ ‡ï¼‰ã€‚
+			**è¾“å‡ºï¼šx1ï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œy1ï¼ˆçºµåæ ‡ï¼‰ã€‚
 			**/
 			i = x_anti_PT;
 			j = y_anti_PT;
@@ -281,12 +281,12 @@ int main(int argc, char* argv[])
 			temp_v = v;
 			
 			/************************************************************************/
-			/* Ä³²ÉÑùµã£º¼ÆËãTexture×ø±ê                                            */
+			/* æŸé‡‡æ ·ç‚¹ï¼šè®¡ç®—Textureåæ ‡                                            */
 			/************************************************************************/
 			/**
-			**ÄæÍ¸ÊÓËã·¨£º¸ù¾ÝÍ¸ÊÓºóµÄ×ø±êºÍÍ¸ÊÓ¾ØÕó£¬·´ÍÆ³öÍ¸ÊÓÇ°µÄ×ø±ê¡£
-			**ÊäÈë£ºtemp_u£¨ºá×ø±ê£©£¬temp_v£¨×Ý×ø±ê£©
-			**Êä³ö£ºx_anti_PT£¨ºá×ø±ê£©£¬y_anti_PT£¨×Ý×ø±ê£©
+			**é€†é€è§†ç®—æ³•ï¼šæ ¹æ®é€è§†åŽçš„åæ ‡å’Œé€è§†çŸ©é˜µï¼ŒåæŽ¨å‡ºé€è§†å‰çš„åæ ‡ã€‚
+			**è¾“å…¥ï¼štemp_uï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œtemp_vï¼ˆçºµåæ ‡ï¼‰
+			**è¾“å‡ºï¼šx_anti_PTï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œy_anti_PTï¼ˆçºµåæ ‡ï¼‰
 			**/
 			delta1 = m0*m4 - m1*m3 + m3*m7*temp_u - m4*m6*temp_u - m0*m7*temp_v + m1*m6*temp_v;	
 			delta4 = m1*m5 - m2*m4 + m4*temp_u - m1*temp_v - m5*m7*temp_u + m2*m7*temp_v;
@@ -297,9 +297,9 @@ int main(int argc, char* argv[])
 			TempCoo[pos3++] = y_anti_PT;
 
 			/**
-			**ÄæÓãÑÛËã·¨£ºÍÆËã³öÕý³£Í¼Æ¬ÖÐµÄ²ÉÑùµã×ø±êÔÚÓãÑÛÍ¼Æ¬ÖÐµÄ¶ÔÓ¦Ó³Éäµã¡£
-			**ÊäÈë£ºi£¨ºá×ø±ê£©£¬j£¨×Ý×ø±ê£©¡£
-			**Êä³ö£ºx1£¨ºá×ø±ê£©£¬y1£¨×Ý×ø±ê£©¡£
+			**é€†é±¼çœ¼ç®—æ³•ï¼šæŽ¨ç®—å‡ºæ­£å¸¸å›¾ç‰‡ä¸­çš„é‡‡æ ·ç‚¹åæ ‡åœ¨é±¼çœ¼å›¾ç‰‡ä¸­çš„å¯¹åº”æ˜ å°„ç‚¹ã€‚
+			**è¾“å…¥ï¼šiï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œjï¼ˆçºµåæ ‡ï¼‰ã€‚
+			**è¾“å‡ºï¼šx1ï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œy1ï¼ˆçºµåæ ‡ï¼‰ã€‚
 			**/
 			i = x_anti_PT;
 			j = y_anti_PT;
@@ -315,14 +315,14 @@ int main(int argc, char* argv[])
 			ModelCoo[pos2++] = CAMERA3_ZBUFFER;
 
 			/************************************************************************/
-			/* ÏàÁÚ²ÉÑùµã£º¼ÆËãTexture×ø±ê                                          */
+			/* ç›¸é‚»é‡‡æ ·ç‚¹ï¼šè®¡ç®—Textureåæ ‡                                          */
 			/************************************************************************/
 			// temp_u = temp_u;
 			temp_v += mesh_y;
 			/**
-			**ÄæÍ¸ÊÓËã·¨£º¸ù¾ÝÍ¸ÊÓºóµÄ×ø±êºÍÍ¸ÊÓ¾ØÕó£¬·´ÍÆ³öÍ¸ÊÓÇ°µÄ×ø±ê¡£
-			**ÊäÈë£ºtemp_u£¨ºá×ø±ê£©£¬temp_v£¨×Ý×ø±ê£©
-			**Êä³ö£ºx_anti_PT£¨ºá×ø±ê£©£¬y_anti_PT£¨×Ý×ø±ê£©
+			**é€†é€è§†ç®—æ³•ï¼šæ ¹æ®é€è§†åŽçš„åæ ‡å’Œé€è§†çŸ©é˜µï¼ŒåæŽ¨å‡ºé€è§†å‰çš„åæ ‡ã€‚
+			**è¾“å…¥ï¼štemp_uï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œtemp_vï¼ˆçºµåæ ‡ï¼‰
+			**è¾“å‡ºï¼šx_anti_PTï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œy_anti_PTï¼ˆçºµåæ ‡ï¼‰
 			**/
 			delta1 = m0*m4 - m1*m3 + m3*m7*temp_u - m4*m6*temp_u - m0*m7*temp_v + m1*m6*temp_v;	
 			delta4 = m1*m5 - m2*m4 + m4*temp_u - m1*temp_v - m5*m7*temp_u + m2*m7*temp_v;
@@ -333,9 +333,9 @@ int main(int argc, char* argv[])
 			TempCoo[pos3++] = y_anti_PT;
 
 			/**
-			**ÄæÓãÑÛËã·¨£ºÍÆËã³öÕý³£Í¼Æ¬ÖÐµÄ²ÉÑùµã×ø±êÔÚÓãÑÛÍ¼Æ¬ÖÐµÄ¶ÔÓ¦Ó³Éäµã¡£
-			**ÊäÈë£ºi£¨ºá×ø±ê£©£¬j£¨×Ý×ø±ê£©¡£
-			**Êä³ö£ºx1£¨ºá×ø±ê£©£¬y1£¨×Ý×ø±ê£©¡£
+			**é€†é±¼çœ¼ç®—æ³•ï¼šæŽ¨ç®—å‡ºæ­£å¸¸å›¾ç‰‡ä¸­çš„é‡‡æ ·ç‚¹åæ ‡åœ¨é±¼çœ¼å›¾ç‰‡ä¸­çš„å¯¹åº”æ˜ å°„ç‚¹ã€‚
+			**è¾“å…¥ï¼šiï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œjï¼ˆçºµåæ ‡ï¼‰ã€‚
+			**è¾“å‡ºï¼šx1ï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œy1ï¼ˆçºµåæ ‡ï¼‰ã€‚
 			**/
 			i = x_anti_PT;
 			j = y_anti_PT;
@@ -370,12 +370,12 @@ int main(int argc, char* argv[])
 			temp_v = v;
 			
 			/************************************************************************/
-			/* Ä³²ÉÑùµã£º¼ÆËãTexture×ø±ê                                            */
+			/* æŸé‡‡æ ·ç‚¹ï¼šè®¡ç®—Textureåæ ‡                                            */
 			/************************************************************************/
 			/**
-			**ÄæÍ¸ÊÓËã·¨£º¸ù¾ÝÍ¸ÊÓºóµÄ×ø±êºÍÍ¸ÊÓ¾ØÕó£¬·´ÍÆ³öÍ¸ÊÓÇ°µÄ×ø±ê¡£
-			**ÊäÈë£ºtemp_u£¨ºá×ø±ê£©£¬temp_v£¨×Ý×ø±ê£©
-			**Êä³ö£ºx_anti_PT£¨ºá×ø±ê£©£¬y_anti_PT£¨×Ý×ø±ê£©
+			**é€†é€è§†ç®—æ³•ï¼šæ ¹æ®é€è§†åŽçš„åæ ‡å’Œé€è§†çŸ©é˜µï¼ŒåæŽ¨å‡ºé€è§†å‰çš„åæ ‡ã€‚
+			**è¾“å…¥ï¼štemp_uï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œtemp_vï¼ˆçºµåæ ‡ï¼‰
+			**è¾“å‡ºï¼šx_anti_PTï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œy_anti_PTï¼ˆçºµåæ ‡ï¼‰
 			**/
 			delta1 = m0*m4 - m1*m3 + m3*m7*temp_u - m4*m6*temp_u - m0*m7*temp_v + m1*m6*temp_v;	
 			delta4 = m1*m5 - m2*m4 + m4*temp_u - m1*temp_v - m5*m7*temp_u + m2*m7*temp_v;
@@ -386,9 +386,9 @@ int main(int argc, char* argv[])
 			TempCoo[pos3++] = y_anti_PT;
 
 			/**
-			**ÄæÓãÑÛËã·¨£ºÍÆËã³öÕý³£Í¼Æ¬ÖÐµÄ²ÉÑùµã×ø±êÔÚÓãÑÛÍ¼Æ¬ÖÐµÄ¶ÔÓ¦Ó³Éäµã¡£
-			**ÊäÈë£ºi£¨ºá×ø±ê£©£¬j£¨×Ý×ø±ê£©¡£
-			**Êä³ö£ºx1£¨ºá×ø±ê£©£¬y1£¨×Ý×ø±ê£©¡£
+			**é€†é±¼çœ¼ç®—æ³•ï¼šæŽ¨ç®—å‡ºæ­£å¸¸å›¾ç‰‡ä¸­çš„é‡‡æ ·ç‚¹åæ ‡åœ¨é±¼çœ¼å›¾ç‰‡ä¸­çš„å¯¹åº”æ˜ å°„ç‚¹ã€‚
+			**è¾“å…¥ï¼šiï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œjï¼ˆçºµåæ ‡ï¼‰ã€‚
+			**è¾“å‡ºï¼šx1ï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œy1ï¼ˆçºµåæ ‡ï¼‰ã€‚
 			**/
 			i = x_anti_PT;
 			j = y_anti_PT;
@@ -404,14 +404,14 @@ int main(int argc, char* argv[])
 			ModelCoo[pos2++] = CAMERA4_ZBUFFER;
 
 			/************************************************************************/
-			/* ÏàÁÚ²ÉÑùµã£º¼ÆËãTexture×ø±ê                                          */
+			/* ç›¸é‚»é‡‡æ ·ç‚¹ï¼šè®¡ç®—Textureåæ ‡                                          */
 			/************************************************************************/
 			// temp_u = temp_u;
 			temp_v += mesh_y;
 			/**
-			**ÄæÍ¸ÊÓËã·¨£º¸ù¾ÝÍ¸ÊÓºóµÄ×ø±êºÍÍ¸ÊÓ¾ØÕó£¬·´ÍÆ³öÍ¸ÊÓÇ°µÄ×ø±ê¡£
-			**ÊäÈë£ºtemp_u£¨ºá×ø±ê£©£¬temp_v£¨×Ý×ø±ê£©
-			**Êä³ö£ºx_anti_PT£¨ºá×ø±ê£©£¬y_anti_PT£¨×Ý×ø±ê£©
+			**é€†é€è§†ç®—æ³•ï¼šæ ¹æ®é€è§†åŽçš„åæ ‡å’Œé€è§†çŸ©é˜µï¼ŒåæŽ¨å‡ºé€è§†å‰çš„åæ ‡ã€‚
+			**è¾“å…¥ï¼štemp_uï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œtemp_vï¼ˆçºµåæ ‡ï¼‰
+			**è¾“å‡ºï¼šx_anti_PTï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œy_anti_PTï¼ˆçºµåæ ‡ï¼‰
 			**/
 			delta1 = m0*m4 - m1*m3 + m3*m7*temp_u - m4*m6*temp_u - m0*m7*temp_v + m1*m6*temp_v;	
 			delta4 = m1*m5 - m2*m4 + m4*temp_u - m1*temp_v - m5*m7*temp_u + m2*m7*temp_v;
@@ -422,9 +422,9 @@ int main(int argc, char* argv[])
 			TempCoo[pos3++] = y_anti_PT;
 
 			/**
-			**ÄæÓãÑÛËã·¨£ºÍÆËã³öÕý³£Í¼Æ¬ÖÐµÄ²ÉÑùµã×ø±êÔÚÓãÑÛÍ¼Æ¬ÖÐµÄ¶ÔÓ¦Ó³Éäµã¡£
-			**ÊäÈë£ºi£¨ºá×ø±ê£©£¬j£¨×Ý×ø±ê£©¡£
-			**Êä³ö£ºx1£¨ºá×ø±ê£©£¬y1£¨×Ý×ø±ê£©¡£
+			**é€†é±¼çœ¼ç®—æ³•ï¼šæŽ¨ç®—å‡ºæ­£å¸¸å›¾ç‰‡ä¸­çš„é‡‡æ ·ç‚¹åæ ‡åœ¨é±¼çœ¼å›¾ç‰‡ä¸­çš„å¯¹åº”æ˜ å°„ç‚¹ã€‚
+			**è¾“å…¥ï¼šiï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œjï¼ˆçºµåæ ‡ï¼‰ã€‚
+			**è¾“å‡ºï¼šx1ï¼ˆæ¨ªåæ ‡ï¼‰ï¼Œy1ï¼ˆçºµåæ ‡ï¼‰ã€‚
 			**/
 			i = x_anti_PT;
 			j = y_anti_PT;
@@ -442,7 +442,7 @@ int main(int argc, char* argv[])
     }    
 
 	/**
-	**·Ö±ð¸ñÊ½»¯Êä³öÈý¸öÊý¾ÝÊý¾Ýµ½Èý¸öÎÄ¼þÖÐ
+	**åˆ†åˆ«æ ¼å¼åŒ–è¾“å‡ºä¸‰ä¸ªæ•°æ®æ•°æ®åˆ°ä¸‰ä¸ªæ–‡ä»¶ä¸­
 	**/
 	//ofstream  ofstream_modelCoo("D:\\Matlab_Home\\fisheye\\Anti_PT-FishEye_CoordinateGenerator\\modelCoo.txt");
 	//ofstream  ofstream_textCoo("D:\\Matlab_Home\\fisheye\\Anti_PT-FishEye_CoordinateGenerator\\textCoo.txt");
@@ -466,7 +466,7 @@ int main(int argc, char* argv[])
 	{
 		ofstream_modelCoo<<ModelCoo[model_count++]<<" ";
 		ofstream_modelCoo<<ModelCoo[model_count++]<<"\n";
-		model_count++;//ÈýÎ¬×ø±êÖÐµÄzÖµ±»ºöÂÔ
+		model_count++;//ä¸‰ç»´åæ ‡ä¸­çš„zå€¼è¢«å¿½ç•¥
 	}
 	long int text_count = 0;
 	while (text_count<TEXCORDS_POINT_NUM)

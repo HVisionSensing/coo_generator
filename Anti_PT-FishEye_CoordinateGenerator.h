@@ -1,22 +1,22 @@
 #define MESH_X 1.0
 #define MESH_Y 2.0
 
-//ÉãÏñÍ·1   720x480
+//æ‘„åƒå¤´1   720x480
 #define XOFS1       180.0
 #define YOFS1       120.0
 #define OFFSET_X1   -20.0
 #define OFFSET_Y1   10.0
-//ÉãÏñÍ·2   
+//æ‘„åƒå¤´2   
 #define XOFS2       540.0
 #define YOFS2       120.0
 #define OFFSET_X2   0.0
 #define OFFSET_Y2   -20.0
-//ÉãÏñÍ·3  
+//æ‘„åƒå¤´3  
 #define XOFS3       180.0
 #define YOFS3       360.0
 #define OFFSET_X3   -20.0
 #define OFFSET_Y3   10.0
-//ÉãÏñÍ·4  
+//æ‘„åƒå¤´4  
 #define XOFS4       540.0
 #define YOFS4       360.0
 #define OFFSET_X4   0.0
